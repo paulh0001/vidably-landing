@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useEffect, useId, useCallback } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 
 interface EvidenceCardProps {
   imageSrc?: string;
@@ -44,8 +44,8 @@ export default function EvidenceCard({
   subLine = DEFAULT_SUB_LINE,
 }: EvidenceCardProps) {
   const height = heightProp ?? Math.round(width * 16 / 9);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-  const frameId = useId().replace(/:/g, "");
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   // Scale all internal measurements proportionally based on card width
   // Reference: largest card in Figma is 221px wide
@@ -56,25 +56,36 @@ export default function EvidenceCard({
   const chevronSize = Math.max(6, Math.round(9.3 * scale));
   const infoBarPadding = Math.round(9.3 * scale);
 
-  const sendPlay = useCallback(() => {
-    const win = iframeRef.current?.contentWindow;
-    if (win) win.postMessage({ type: "play" }, "*");
+  const [isInViewport, setIsInViewport] = useState(false);
+
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => setIsInViewport(entry.isIntersecting),
+      { rootMargin: "200px" },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
   }, []);
 
-  // When iframe is mounted (isActive), listen for ready/ended messages and auto-play
   useEffect(() => {
-    if (!videoSrc || !isActive) return;
-    const handler = (e: MessageEvent) => {
-      if (e.data?.id !== frameId) return;
-      if (e.data?.type === "videoReady") sendPlay();
-      if (e.data?.type === "videoEnded") onEnded?.();
-    };
-    window.addEventListener("message", handler);
-    return () => window.removeEventListener("message", handler);
-  }, [videoSrc, isActive, frameId, sendPlay, onEnded]);
+    const video = videoRef.current;
+    if (!video) return;
+    if (isActive && isInViewport) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }, [isActive, isInViewport]);
+
+  const handleEnded = useCallback(() => {
+    onEnded?.();
+  }, [onEnded]);
 
   return (
     <div
+      ref={cardRef}
       className={`relative flex flex-col items-center justify-between ${className}`}
       style={{
         width,
@@ -99,26 +110,18 @@ export default function EvidenceCard({
         />
       )}
 
-      {/* Video iframe — only loaded for active card, renders on top of poster */}
-      {videoSrc && isActive && (
-        <iframe
-          ref={iframeRef}
-          src={`/api/video-frame?src=${encodeURIComponent(videoSrc)}&id=${encodeURIComponent(frameId)}&loop=${loop ? "true" : "false"}`}
-          title=""
-          allow="autoplay; fullscreen"
-          onLoad={sendPlay}
-          className="absolute border-0 pointer-events-none"
-          style={{
-            top: -1,
-            left: -1,
-            right: -1,
-            bottom: -1,
-            width: "calc(100% + 2px)",
-            height: "calc(100% + 2px)",
-            zIndex: 1,
-            backfaceVisibility: "hidden",
-            WebkitBackfaceVisibility: "hidden",
-          }}
+      {/* Native video — only mounted when near viewport, plays on top of poster */}
+      {videoSrc && isInViewport && (
+        <video
+          ref={videoRef}
+          src={videoSrc}
+          muted
+          playsInline
+          loop={loop}
+          preload="auto"
+          onEnded={loop ? undefined : handleEnded}
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+          style={{ zIndex: 1 }}
         />
       )}
 
