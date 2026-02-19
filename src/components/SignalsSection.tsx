@@ -5,6 +5,7 @@ import Image from "next/image";
 import SectionHeading from "./SectionHeading";
 import EvidenceCard from "./EvidenceCard";
 import AnimateIn from "./AnimateIn";
+import { EVIDENCE_CARDS } from "@/data/evidence-cards";
 
 const evidenceRows = [
   { label: "Fit:", value: "true_to_size", score: 0.86 },
@@ -169,7 +170,8 @@ export default function SignalsSection() {
           <div className="flex min-h-[427px] w-full flex-col items-center justify-start">
             {activeView === "shopper" ? (
               <EvidenceCard
-                videoSrc="/images/evidence-cards/evidence-card-5.mov"
+                videoSrc={EVIDENCE_CARDS.card5.videoSrc}
+                posterSrc={EVIDENCE_CARDS.card5.posterSrc}
                 width={240}
                 subLine="Black Hoodie - Small"
               />

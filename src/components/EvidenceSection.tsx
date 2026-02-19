@@ -6,17 +6,13 @@ import useEmblaCarousel from "embla-carousel-react";
 import EvidenceCard from "./EvidenceCard";
 import SectionHeading from "./SectionHeading";
 import AnimateIn from "./AnimateIn";
+import { EVIDENCE_SECTION_CARDS } from "@/data/evidence-cards";
 
 // Desktop: scaled down so mockup fits in viewport alongside heading (was 221×495). Mobile: smaller so card fits in viewport (buttons + gaps leave ~264px).
 const CARD_W_DESKTOP = 130;
 const CARD_GAP = 12; // gap-3
 const MOBILE_CARD_WIDTH = 200; // fits inside narrow mobile viewport (section px-4 + buttons + gaps)
 const MOBILE_BREAKPOINT = 640;
-const CAROUSEL_CARDS = [
-  { videoSrc: "/images/evidence-cards/evidence-card-1.mov", nameLine: "Riley C. - 5.5ft.", subLine: "Green Hoodie- Medium" },
-  { videoSrc: "/images/evidence-cards/evidence-card-5.mov", nameLine: "Alexa P. - 5.7ft.", subLine: "Black Hoodie - Small" },
-  { videoSrc: "/images/evidence-cards/evidence-card-2.mov", nameLine: "Morgan D. - 5.9", subLine: "White Hoodie - Medium" },
-];
 
 function BrowserChrome({ children }: { children: React.ReactNode }) {
   return (
@@ -45,7 +41,7 @@ const VIEWPORT_TOTAL_DESKTOP = VIEWPORT_WIDTH_DESKTOP + VIEWPORT_EXTRA_VISIBLE +
 const MOCKUP_MAX_WIDTH = VIEWPORT_TOTAL_DESKTOP + 40 + 40 + 8 + 8 + 32;
 
 // Duplicate slides so the track overflows the viewport and Embla can scroll (otherwise carousel is stuck)
-const SLIDES = [...CAROUSEL_CARDS, ...CAROUSEL_CARDS];
+const SLIDES = [...EVIDENCE_SECTION_CARDS, ...EVIDENCE_SECTION_CARDS];
 
 // Reserve space for section px-4 (32) + viewport px-4 (32) only; buttons are absolute on mobile so they don't take layout space
 const MOBILE_RESERVE_PX = 64;
@@ -96,7 +92,7 @@ function ProductPageMockup() {
     const updateCenterIndex = () => {
       const snap = emblaApi.selectedScrollSnap();
       setCenterSlideIndex(snap);
-      setSelectedIndex(snap % CAROUSEL_CARDS.length);
+      setSelectedIndex(snap % EVIDENCE_SECTION_CARDS.length);
     };
     updateCenterIndex();
     emblaApi.on("select", updateCenterIndex);
@@ -105,7 +101,7 @@ function ProductPageMockup() {
     };
   }, [emblaApi]);
 
-  const logicalIndex = selectedIndex % CAROUSEL_CARDS.length;
+  const logicalIndex = selectedIndex % EVIDENCE_SECTION_CARDS.length;
 
   const goToSlide = (index: number) => scrollTo(index);
 
@@ -203,6 +199,7 @@ function ProductPageMockup() {
                 >
                   <EvidenceCard
                     videoSrc={card.videoSrc}
+                    posterSrc={card.posterSrc}
                     width={CARD_W}
                     className="!h-full !w-full"
                     noShadow
@@ -228,7 +225,7 @@ function ProductPageMockup() {
 
       {/* Carousel dots */}
       <div className="flex justify-center gap-2 pb-8">
-        {CAROUSEL_CARDS.map((_, i) => (
+        {EVIDENCE_SECTION_CARDS.map((_, i) => (
           <button
             key={i}
             type="button"

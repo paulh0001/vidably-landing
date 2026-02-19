@@ -4,6 +4,7 @@ import { useState, useCallback, useRef, useEffect } from "react";
 import EvidenceCard from "./EvidenceCard";
 import EmailCaptureForm from "./EmailCaptureForm";
 import SectionHeading from "./SectionHeading";
+import { HERO_CARDS, type EvidenceCardData } from "@/data/evidence-cards";
 
 /** Shorter = each card spends less time in center before next one moves in. */
 const CAROUSEL_TRANSITION_MS = 800;
@@ -12,38 +13,6 @@ const CAROUSEL_TRANSITION_MS = 800;
 const CARD_W = 228;
 const CARD_H = Math.round(CARD_W * 16 / 9); /* 9:16 vertical video */
 
-const CARDS = [
-  {
-    videoSrc: "/images/evidence-cards/evidence-card-dogtreats.mov",
-    posterSrc: "/images/evidence-cards/evidence-card-dogtreats-poster.jpg",
-    nameLine: "Marcus T. - Verified",
-    subLine: "Natural Dog Treats - 12oz",
-  },
-  {
-    videoSrc: "/images/evidence-cards/evidence-card-inkblot-mug.mov",
-    posterSrc: "/images/evidence-cards/evidence-card-inkblot-mug-poster.jpg",
-    nameLine: "Jamie L. - Verified",
-    subLine: "Inkblot Mug",
-  },
-  {
-    videoSrc: "/images/evidence-cards/evidence-card-5.mov",
-    posterSrc: "/images/evidence-cards/evidence-card-5-poster.jpg",
-    nameLine: "Alexa P. - 5.7ft.",
-    subLine: "White Hoodie - Small",
-  },
-  {
-    videoSrc: "/images/evidence-cards/evidence-card-candles.mov",
-    posterSrc: "/images/evidence-cards/evidence-card-candles-poster.jpg",
-    nameLine: "Sam K. - Verified",
-    subLine: "Soy Candles - Set of 3",
-  },
-  {
-    videoSrc: "/images/evidence-cards/evidence-card-golfshirt-1.mov",
-    posterSrc: "/images/evidence-cards/evidence-card-golfshirt-1-poster.jpg",
-    nameLine: "Jordan M. - 6.0ft.",
-    subLine: "Polo Golf Shirt - Medium",
-  },
-] as const;
 
 /** Cover Flow slots — tight packing with slight overlap, very subtle dimming. */
 const COVER_FLOW_SLOTS = [
@@ -62,13 +31,13 @@ function slotForCard(cardIndex: number, centerIndex: number) {
 const TRANSITION_CSS = `transform ${CAROUSEL_TRANSITION_MS}ms cubic-bezier(0.33, 1, 0.68, 1), opacity ${CAROUSEL_TRANSITION_MS}ms ease`;
 
 export default function Hero() {
-  const [cards, setCards] = useState<typeof CARDS[number][] | null>(null);
+  const [cards, setCards] = useState<EvidenceCardData[] | null>(null);
   const [centerIndex, setCenterIndex] = useState(0);
-  const shuffledRef = useRef<typeof CARDS[number][] | null>(null);
+  const shuffledRef = useRef<EvidenceCardData[] | null>(null);
 
   useEffect(() => {
     if (!shuffledRef.current) {
-      const shuffled = [...CARDS];
+      const shuffled = [...HERO_CARDS];
       for (let i = shuffled.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
@@ -105,7 +74,7 @@ export default function Hero() {
   const step = useCallback((dir: 1 | -1) => {
     if (isAnimating.current) return;
     setCenterIndex((i) => {
-      const len = cards?.length ?? CARDS.length;
+      const len = cards?.length ?? HERO_CARDS.length;
       const next = (i + dir + len) % len;
       setSkipTransition(new Set());
       isAnimating.current = true;

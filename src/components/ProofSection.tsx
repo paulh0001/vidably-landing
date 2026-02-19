@@ -5,6 +5,7 @@ import Image from "next/image";
 import SectionHeading from "./SectionHeading";
 import EvidenceCard from "./EvidenceCard";
 import AnimateIn from "./AnimateIn";
+import { EVIDENCE_CARDS } from "@/data/evidence-cards";
 
 const features = [
   {
@@ -141,7 +142,8 @@ export default function ProofSection() {
             }}
           >
             <EvidenceCard
-              videoSrc="/images/evidence-cards/evidence-card-5.mov"
+              videoSrc={EVIDENCE_CARDS.card5.videoSrc}
+              posterSrc={EVIDENCE_CARDS.card5.posterSrc}
               width={240}
               subLine="Black Hoodie - Small"
             />
