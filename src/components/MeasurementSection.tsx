@@ -21,7 +21,7 @@ export default function MeasurementSection() {
       <AnimateIn>
         <div className="page-container page-grid w-full items-center gap-12 lg:gap-16">
         {/* Dashboard Card - left on desktop; below heading on tablet/mobile */}
-        <div className="col-span-5 order-2 w-full max-w-[520px] shrink-0 overflow-hidden rounded-3xl border border-v-gray-200 bg-bg-pure shadow-dashboard max-[360px]:rounded-2xl lg:order-none lg:col-span-3">
+        <div className="col-span-5 order-2 w-full max-w-[520px] shrink-0 mx-auto overflow-hidden rounded-3xl border border-v-gray-200 bg-bg-pure shadow-dashboard max-[360px]:rounded-2xl md:mx-auto lg:order-none lg:col-span-3 lg:mx-0">
         {/* Dark header */}
         <div className="bg-text-primary px-4 pb-3 pt-3 max-[360px]:px-4 max-[360px]:pb-6 max-[360px]:pt-4">
           <div className="flex items-center justify-between gap-2">
@@ -49,8 +49,8 @@ export default function MeasurementSection() {
         <div className="flex flex-col gap-3 px-4 py-3 max-[360px]:gap-5 max-[360px]:px-4 max-[360px]:py-4">
           {/* Product info */}
           <div className="rounded-xl border border-bg-default bg-v-gray-100 p-3 max-[360px]:p-4 max-[360px]:rounded-[10px]">
-            <div className="flex gap-2 max-sm:flex-col max-[360px]:gap-3">
-              <div className="relative h-[72px] w-[72px] shrink-0 overflow-hidden rounded-[5px] border border-[#b0b0b0] max-sm:mx-auto max-[360px]:h-[100px] max-[360px]:w-[100px]">
+            <div className="flex gap-2 max-[360px]:gap-3">
+              <div className="relative h-[72px] w-[72px] shrink-0 overflow-hidden rounded-[5px] border border-[#b0b0b0] max-[360px]:h-[100px] max-[360px]:w-[100px]">
                 <Image
                   src="/images/section-images/product-image.png"
                   alt="Premium White Hoodie"
@@ -59,7 +59,7 @@ export default function MeasurementSection() {
                 />
               </div>
               <div className="flex min-w-0 flex-1 flex-col gap-1 max-[360px]:gap-2">
-                <div className="flex items-start justify-between max-sm:flex-col max-sm:gap-3 max-[360px]:gap-2">
+                <div className="flex items-start justify-between max-[360px]:flex-col max-[360px]:gap-2">
                   <div className="min-w-0 flex flex-col gap-0.5">
                     <p className="font-body text-[10px] font-semibold uppercase leading-3 tracking-[0.3px] text-v-gray-600 max-[360px]:text-[10px]">
                       Target SKU
@@ -96,7 +96,7 @@ export default function MeasurementSection() {
                 Experimental Method
               </p>
             </div>
-            <div className="grid grid-cols-2 gap-2 max-sm:grid-cols-1 max-[360px]:gap-2">
+            <div className="grid grid-cols-2 gap-2 max-[360px]:gap-2">
               <div className="rounded-lg border border-v-blue-300 bg-v-blue-100 px-3 py-2 max-[360px]:rounded-[10px] max-[360px]:px-3 max-[360px]:py-3">
                 <p className="font-body text-[10px] font-semibold leading-4 tracking-[-0.15px] text-v-blue-800 max-[360px]:text-[10px] max-[360px]:leading-4">
                   Traffic Split
@@ -132,7 +132,7 @@ export default function MeasurementSection() {
                 Metrics Tracked
               </p>
             </div>
-            <div className="grid grid-cols-2 gap-2 max-sm:grid-cols-1 max-[360px]:gap-2">
+            <div className="grid grid-cols-2 gap-2 max-[360px]:gap-2">
               {metrics.map((metric) => (
                 <div
                   key={metric.label}
@@ -190,7 +190,7 @@ export default function MeasurementSection() {
         </div>
 
         {/* Heading - right of dashboard on desktop; above dashboard on tablet/mobile */}
-        <div className="col-span-5 order-1 flex flex-1 flex-col items-start justify-center lg:order-none lg:col-span-2 lg:min-w-0">
+        <div className="col-span-5 order-1 flex flex-1 flex-col items-center justify-center md:items-center lg:order-none lg:col-span-2 lg:min-w-0 lg:items-start">
           <SectionHeading
             title="Live performance data tied to real outcomes."
             subtitle="Video evidence only matters if it converts. Vidably ties every video to SKU-level impact with clean attribution."

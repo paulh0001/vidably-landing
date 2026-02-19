@@ -23,14 +23,14 @@ export default function SectionHeading({
   const titleMaxWidth = "max-w-[900px]";
   const alignClasses =
     align === "left"
-      ? "items-start text-left max-md:items-center max-md:text-center"
+      ? "max-lg:items-center max-lg:text-center lg:items-start lg:text-left"
       : "items-center text-center";
 
   return (
     <div className={`flex flex-col gap-5 max-sm:gap-4 ${alignClasses}`}>
       {label && (
         <span
-          className={`font-body text-xs font-semibold uppercase tracking-widest text-text-muted ${align === "left" ? "text-left max-md:text-center" : "text-center"}`}
+          className={`font-body text-xs font-semibold uppercase tracking-widest text-text-muted ${align === "left" ? "max-lg:text-center lg:text-left" : "text-center"}`}
         >
           {label}
         </span>
@@ -50,7 +50,7 @@ export default function SectionHeading({
       )}
       {subtitle && (
         <p
-          className={`max-w-[720px] font-body text-base leading-relaxed text-text-secondary max-md:text-[15px] max-sm:text-sm ${align === "left" ? "text-left max-md:text-center" : "text-center"}`}
+          className={`max-w-[720px] font-body text-base leading-relaxed text-text-secondary max-md:text-[15px] max-sm:text-sm ${align === "left" ? "max-lg:text-center lg:text-left" : "text-center"}`}
         >
           {subtitle}
         </p>

@@ -239,7 +239,7 @@ function StepCard({
 
 export default function CollaborativeSection() {
   return (
-    <section className="bg-bg-default py-24 max-sm:py-14 max-sm:gap-8 lg:py-28">
+    <section className="bg-bg-default py-24 max-sm:py-20 max-sm:gap-8 lg:py-28">
       <AnimateIn>
         <div className="page-container page-grid gap-16 items-center">
         <div className="col-span-5 flex flex-col items-center">

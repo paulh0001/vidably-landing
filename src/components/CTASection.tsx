@@ -4,7 +4,7 @@ import AnimateIn from "./AnimateIn";
 
 export default function CTASection() {
   return (
-    <section className="relative flex flex-col items-center bg-bg-default py-24 max-sm:py-14 lg:py-32">
+    <section className="relative flex flex-col items-center bg-bg-default py-24 max-sm:py-20 lg:py-32">
       <AnimateIn>
         <div className="page-container page-grid w-full flex flex-col items-center gap-14 max-sm:gap-10">
         <div className="col-span-5 flex flex-col items-center md:col-start-2 md:col-span-3">

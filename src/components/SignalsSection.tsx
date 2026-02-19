@@ -107,7 +107,7 @@ export default function SignalsSection() {
   const [activeView, setActiveView] = useState<"shopper" | "agent">("shopper");
 
   return (
-    <section className="bg-section-alt py-24 max-sm:py-14 lg:py-28">
+    <section className="bg-section-alt py-24 max-sm:py-20 lg:py-28">
       <AnimateIn>
         <div className="page-container page-grid w-full gap-16 max-sm:gap-8 md:items-center">
         {/* Left: Heading + subtitle */}

@@ -130,7 +130,7 @@ export default function Hero() {
       ref={sectionRef}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
-      className="relative flex flex-col items-center gap-6 bg-gradient-subtle pt-4 pb-16 max-sm:gap-5 max-sm:pt-3 max-sm:pb-12 sm:pt-6 sm:pb-20 md:mb-4"
+      className="relative flex flex-col items-center gap-10 bg-gradient-subtle pt-4 pb-16 max-sm:gap-8 max-sm:pt-8 max-sm:pb-12 sm:pt-10 sm:pb-20 md:mb-4"
     >
       <div className="page-container page-grid w-full">
         <div className="col-span-5 flex justify-center md:col-start-2 md:col-span-3 animate-on-load">
@@ -200,7 +200,7 @@ export default function Hero() {
           <EvidenceCard
             videoSrc={cards[centerIndex].videoSrc}
             posterSrc={cards[centerIndex].posterSrc}
-            width={240}
+            width={320}
             loop={false}
             onEnded={advanceToNext}
             nameLine={cards[centerIndex].nameLine}
