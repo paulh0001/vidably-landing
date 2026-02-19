@@ -1,0 +1,251 @@
+@import "tailwindcss";
+
+/* ── Design Tokens (refined for sophistication) ── */
+:root {
+  /* Background */
+  --color-bg-default: #fafaf9;
+  --color-bg-pure: #ffffff;
+  --color-bg-elevated: #ffffff;
+  --color-bg-subtle: #f5f5f4;
+
+  /* Text */
+  --color-text-primary: #1c1917;
+  --color-text-secondary: #57534e;
+  --color-text-muted: #a8a29e;
+
+  /* Gray scale */
+  --color-gray-100: #f9fafb;
+  --color-gray-200: #f3f4f6;
+  --color-gray-300: #e0e0e0;
+  --color-gray-400: #b3b3b3;
+  --color-gray-600: #717171;
+  --color-gray-700: #545454;
+
+  /* Green */
+  --color-green-100: #f0fdf4;
+  --color-green-200: #b9f8cf;
+  --color-green-400: #00c950;
+  --color-green-500: #00a63e;
+  --color-green-600: #008236;
+  --color-green-700: #0d542b;
+
+  /* Blue */
+  --color-blue-100: #eff6ff;
+  --color-blue-200: #dbeafe;
+  --color-blue-300: #bedbff;
+  --color-blue-500: #1447e6;
+  --color-blue-600: #335bb6;
+  --color-blue-800: #233254;
+
+  /* Purple */
+  --color-purple-100: #f3e8ff;
+  --color-purple-200: #e9d4ff;
+  --color-purple-400: #8200db;
+  --color-purple-600: #59168b;
+
+  /* Orange */
+  --color-orange-200: #ffe3d5;
+  --color-orange-400: #ff6a2f;
+
+  /* Yellow */
+  --color-yellow-500: #fdc700;
+
+  /* Red */
+  --color-red-300: #c34874;
+
+  /* Radius */
+  --radius-xl: 8px;
+  --radius-2xl: 12px;
+  --radius-3xl: 16px;
+}
+
+@theme inline {
+  /* Colors */
+  --color-bg-default: var(--color-bg-default);
+  --color-bg-pure: var(--color-bg-pure);
+  --color-bg-elevated: var(--color-bg-elevated);
+  --color-bg-subtle: var(--color-bg-subtle);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-muted: var(--color-text-muted);
+
+  --color-v-gray-100: var(--color-gray-100);
+  --color-v-gray-200: var(--color-gray-200);
+  --color-v-gray-300: var(--color-gray-300);
+  --color-v-gray-400: var(--color-gray-400);
+  --color-v-gray-600: var(--color-gray-600);
+  --color-v-gray-700: var(--color-gray-700);
+
+  --color-v-green-100: var(--color-green-100);
+  --color-v-green-200: var(--color-green-200);
+  --color-v-green-400: var(--color-green-400);
+  --color-v-green-500: var(--color-green-500);
+  --color-v-green-600: var(--color-green-600);
+  --color-v-green-700: var(--color-green-700);
+
+  --color-v-blue-100: var(--color-blue-100);
+  --color-v-blue-200: var(--color-blue-200);
+  --color-v-blue-300: var(--color-blue-300);
+  --color-v-blue-500: var(--color-blue-500);
+  --color-v-blue-600: var(--color-blue-600);
+  --color-v-blue-800: var(--color-blue-800);
+
+  --color-v-purple-100: var(--color-purple-100);
+  --color-v-purple-200: var(--color-purple-200);
+  --color-v-purple-400: var(--color-purple-400);
+  --color-v-purple-600: var(--color-purple-600);
+
+  --color-v-orange-200: var(--color-orange-200);
+  --color-v-orange-400: var(--color-orange-400);
+
+  /* Radius */
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+  --radius-3xl: var(--radius-3xl);
+
+  /* Typography */
+  --font-heading: var(--font-poppins);
+  --font-body: var(--font-inter);
+
+  /* Shadows — softer, more refined */
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-card-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-card-lg: 0 8px 30px rgba(0, 0, 0, 0.08);
+  --shadow-evidence: 0 20px 40px -8px rgba(0, 0, 0, 0.18), 0 8px 16px -8px rgba(0, 0, 0, 0.1);
+  --shadow-dashboard: 0 24px 48px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.04);
+  --shadow-cta: 0 4px 14px rgba(0, 0, 0, 0.12);
+  --shadow-header: 0 1px 0 rgba(0, 0, 0, 0.05);
+}
+
+body {
+  background: var(--color-bg-default);
+  color: var(--color-text-primary);
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle gradient overlay for depth (optional use in hero/CTA) */
+.bg-gradient-subtle {
+  background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 0, 0, 0.03), transparent),
+    linear-gradient(to bottom, var(--color-bg-default), var(--color-bg-default));
+}
+.bg-section-alt {
+  background: var(--color-bg-pure);
+}
+.bg-section-elevated {
+  background: var(--color-bg-elevated);
+  box-shadow: var(--shadow-card);
+}
+
+/* ── 5-column grid system ── */
+:root {
+  --page-max-width: 1280px;
+  --page-margin: 160px;
+  --grid-cols: 5;
+  --grid-gap: 1.5rem;
+  --grid-gap-lg: 2rem;
+}
+
+.page-container {
+  width: 100%;
+  max-width: var(--page-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .page-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-container {
+    padding-left: var(--page-margin);
+    padding-right: var(--page-margin);
+  }
+}
+
+.page-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cols), 1fr);
+  gap: var(--grid-gap);
+}
+
+@media (min-width: 1024px) {
+  .page-grid {
+    gap: var(--grid-gap-lg);
+  }
+}
+
+/* ── Subtle animations ── */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* One-time entrance (e.g. hero on load) */
+.animate-on-load {
+  opacity: 0;
+  animation: fade-in-up 0.55s ease-out forwards;
+}
+
+.animate-on-load-delay {
+  opacity: 0;
+  animation: fade-in-up 0.55s ease-out 0.15s forwards;
+}
+
+/* Scroll-triggered: initial state, then .visible applied by JS */
+.animate-in {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 0.5s ease-out,
+    transform 0.5s ease-out;
+}
+
+.animate-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate-in.delay-1 { transition-delay: 0.08s; }
+.animate-in.delay-2 { transition-delay: 0.16s; }
+.animate-in.delay-3 { transition-delay: 0.24s; }
+.animate-in.delay-4 { transition-delay: 0.32s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-on-load,
+  .animate-on-load-delay {
+    animation: none;
+    opacity: 1;
+  }
+  .animate-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .animate-in.visible {
+    opacity: 1;
+    transform: none;
+  }
+}
